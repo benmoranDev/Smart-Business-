@@ -1,114 +1,140 @@
 Smart Business
 
+
 Plataforma SaaS de gestão empresarial voltada para micro e pequenas empresas (MPEs), desenvolvida no contexto do curso de Engenharia de Computação.
 
----
+## Descrição
 
-Descrição
+O **Smart Business** é um sistema web de gestão empresarial que centraliza operações administrativas essenciais em um único ambiente digital. A proposta da plataforma é reduzir a complexidade da rotina de micro e pequenos negócios, oferecendo controle de clientes, produtos, vendas, estoque, financeiro e indicadores gerenciais em uma aplicação integrada.
 
-O Smart Business é um sistema web que centraliza as principais operações administrativas de um negócio em um único ambiente digital. A plataforma foi projetada para resolver problemas recorrentes enfrentados por microempreendedores, como controle financeiro ineficiente, gestão manual de estoque e falta de visibilidade sobre o desempenho da empresa.
+O sistema foi pensado para apoiar empreendedores que ainda enfrentam dificuldades com processos manuais, falta de organização operacional e pouca visibilidade sobre o desempenho do negócio. Dessa forma, a plataforma busca melhorar a tomada de decisão, a produtividade e a sustentabilidade da empresa.
 
-A solução permite organizar, automatizar e monitorar atividades essenciais, contribuindo para a tomada de decisão e sustentabilidade do negócio. Estudos indicam que uma parcela significativa das micro e pequenas empresas encerra suas atividades por falhas na gestão, cenário que o sistema busca mitigar .
+## Objetivo
 
----
+Desenvolver uma plataforma SaaS que permita:
 
-Objetivo
+- Centralizar a gestão empresarial.
+- Automatizar processos operacionais.
+- Organizar informações de clientes, produtos, vendas e finanças.
+- Fornecer indicadores para apoio à tomada de decisão.
+- Reduzir a complexidade da gestão para pequenos negócios.
 
-Desenvolver uma plataforma SaaS que:
+## Funcionalidades principais
 
-- Centralize a gestão empresarial
-- Automatize processos operacionais
-- Forneça indicadores para tomada de decisão
-- Reduza a complexidade da gestão para pequenos negócios
+- Cadastro e gestão de clientes.
+- Cadastro e controle de produtos.
+- Controle de estoque.
+- Registro de vendas.
+- Módulo de PDV (caixa).
+- Controle financeiro com receitas e despesas.
+- Dashboard com indicadores gerenciais.
+- Histórico de vendas.
+- Registro de forma de pagamento e troco.
+- Alertas de estoque baixo.
+- Precificação assistida.
+- Gestão de usuários.
+- Cadastro de empresa.
 
----
+## Arquitetura
 
-Funcionalidades principais
+O sistema segue uma arquitetura em camadas, com separação clara entre apresentação, regras de negócio e persistência de dados.
 
-- Cadastro e gestão de clientes
-- Controle de produtos e estoque
-- Registro de vendas (PDV)
-- Controle financeiro (receitas e despesas)
-- Dashboard com indicadores de desempenho
-- Relatórios gerenciais
-- Alertas de estoque baixo
-- Precificação assistida
-- Emissão de notas fiscais (NF-e)
+### Camadas da aplicação
 
-O sistema cobre as principais necessidades operacionais de micro e pequenas empresas, funcionando como um ERP simplificado .
+- **Frontend:** Thymeleaf, HTML5, CSS3, JavaScript, Bootstrap.
+- **Backend:** Java + Spring Boot.
+- **Persistência:** Spring Data JPA / Hibernate.
+- **Banco de dados:** PostgreSQL.
+- **Segurança:** Spring Security.
+- **Build e gerenciamento de dependências:** Maven.
 
----
+## Tecnologias utilizadas
 
-Arquitetura
+### Backend
 
-O sistema segue uma arquitetura em camadas com separação clara de responsabilidades:
+- Java
+- Spring Boot
+- Spring Web
+- Spring Data JPA
+- Spring Security
+- Thymeleaf
+- Thymeleaf Extras Spring Security
+- Hibernate
+- Bean Validation
 
-- Frontend: React + TypeScript
-- Backend: Rust + Axum
-- Banco de dados: PostgreSQL
-- Cache: Redis
-- Infraestrutura: Docker + Nginx
+### Frontend
 
-A aplicação adota o modelo SaaS multi-tenant, garantindo isolamento lógico dos dados por empresa e permitindo escalabilidade horizontal .
+- HTML5
+- CSS3
+- JavaScript
+- Thymeleaf
+- Bootstrap
+- Bootstrap Icons
 
----
-
-Tecnologias
-
-Frontend
-
-- React
-- TypeScript
-- Tailwind CSS
-- Zustand
-- Recharts
-
-Backend
-
-- Rust
-- Axum
-- SQLx
-- Tokio
-
-Banco de dados e cache
+### Banco de dados
 
 - PostgreSQL
-- Redis
 
-Infraestrutura
+### Ferramentas e infraestrutura
 
-- Docker
-- Docker Compose
-- Nginx
-- GitHub Actions
+- Maven
+- Git
+- GitHub
 
-Segurança
+## Dependências do projeto
 
-- JWT (autenticação)
-- Argon2id (hash de senha)
-- HTTPS (SSL)
+Com base na estrutura atual da aplicação, o projeto utiliza ou está preparado para utilizar dependências como:
 
----
+- `spring-boot-starter-web`
+- `spring-boot-starter-thymeleaf`
+- `spring-boot-starter-data-jpa`
+- `spring-boot-starter-security`
+- `thymeleaf-extras-springsecurity6`
+- `postgresql`
+- `spring-boot-starter-validation`
+- `spring-boot-devtools` (em ambiente de desenvolvimento)
+- `lombok` (caso esteja sendo usado nas entidades/DTOs)
 
-Fluxo básico do sistema
+> Ajuste esta lista conforme o seu `pom.xml`, caso existam dependências adicionais já incluídas no projeto.
 
-1. Uma venda é registrada no sistema
-2. O estoque é atualizado automaticamente
-3. A movimentação financeira é registrada
-4. O dashboard exibe indicadores atualizados
+O fluxo principal do Smart Business integra diferentes módulos da aplicação:
 
-Esse fluxo garante integração entre os módulos do sistema .
+1. Uma venda é registrada no sistema.
+2. Os itens vendidos são processados no módulo de vendas/PDV.
+3. O estoque é atualizado conforme a quantidade vendida.
+4. A forma de pagamento é registrada.
+5. O valor recebido e o troco podem ser armazenados na venda.
+6. As informações ficam disponíveis para histórico, acompanhamento e relatórios.
 
----
+## Segurança
 
-Público-alvo
+O sistema conta com recursos de segurança aplicados na camada web:
+
+- Autenticação de usuários com Spring Security.
+- Controle de acesso por perfil.
+- Proteção de rotas e menus por autorização.
+- Integração com Thymeleaf Extras para controle de exibição no frontend.
+- Proteção contra CSRF em formulários.
+
+## Público-alvo
 
 - Microempreendedores individuais (MEI)
 - Pequenos comércios
 - Prestadores de serviço
-- Restaurantes e negócios locais
+- Restaurantes
+- Negócios locais em geral
 
----
+## Status do projeto
+
+Em desenvolvimento. O sistema está evoluindo de forma incremental, com foco em módulos centrais como cadastro, vendas, PDV, estoque, financeiro e dashboard administrativo.
+
+## Licença
+
+Este projeto está licenciado sob a **MIT License**.
+
+## Equipe
+
+Projeto desenvolvido no contexto do curso de Engenharia de Computação.
 
 Estrutura do projeto
 
